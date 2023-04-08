@@ -4,7 +4,7 @@ import polimg from '../images/policy.png'
 
 const Policy = () => {
   return (
-    <Layout>
+    <Layout title={"Privacy Policy"}>
         <div className="row contact-us">
         <div className="col-md-6 ">
           <img

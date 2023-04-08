@@ -2,10 +2,19 @@ import React from 'react';
 import Header from './Header';
 import Footer from './Footer';
 import './Layout.css'
+import {Helmet} from 'react-helmet';
+import { Toaster } from 'react-hot-toast';
+import 'react-toastify/dist/ReactToastify.css';
 
-function Layout({children}) {
+function Layout({children,title,description,keywords}) {
   return (
     <div>
+      <Helmet>
+        <meta charSet='utf-8'/>
+        <meta name='description' content={description}/>
+        <meta name='keywords' content={keywords}/>
+        <title>{title}</title>
+      </Helmet>
       <Header/>
       <main style={
         {
@@ -15,7 +24,9 @@ function Layout({children}) {
           alignItems: 'center',
           margin: 'auto 50px'
         }}
-      >{children}</main>
+      >
+        <Toaster/>
+        {children}</main>
       <Footer/>
     </div>
   )

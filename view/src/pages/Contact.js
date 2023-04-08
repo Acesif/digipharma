@@ -5,7 +5,7 @@ import contimg from '../images/contact.jpg';
 
 const Contact = () => {
   return (
-    <Layout>
+    <Layout title={"Contact"}>
         <div className="row contact-us">
         <div className="col-md-6 ">
           <img

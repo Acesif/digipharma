@@ -7,20 +7,20 @@ export const registerController = async(req,res) =>{
         const {username,email,password} = req.body;
         //validation
         if(!username){
-            return res.send({error:'Name is required'})
+            return res.send({message:'Name is required'})
         }
         if(!email){
-            return res.send({error:'Email is required'})
+            return res.send({message:'Email is required'})
         }
         if(!password){
-            return res.send({error:'Password is required'})
+            return res.send({message:'Password is required'})
         }
         // check item
         const existingUser = await userModel.findOne({email})
         // existing item
         if(existingUser){
             return res.status(200).send({
-                success: true,
+                success: false,
                 message: 'Account already exists. Please Log in'
             })
         }

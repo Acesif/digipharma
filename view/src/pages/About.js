@@ -5,7 +5,7 @@ import abimg from '../images/about.jpeg'
 
 const About = () => {
   return (
-    <Layout>
+    <Layout title={"About"}>
       <div className="row contact-us">
         <div className="col-md-6 ">
           <img
