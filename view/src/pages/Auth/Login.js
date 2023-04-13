@@ -37,8 +37,8 @@ const Login = () => {
     }
 
   return (
-    <Layout title={"Register"}>
-        <div className="register">
+    <Layout title={"Login"}>
+        <div className="login">
             <h1 className='mb-5'>Login</h1>
             <form onSubmit={handleSubmit}>
                 <div className="mb-3">
