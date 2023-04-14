@@ -8,13 +8,14 @@ const Register = () => {
     const [username,setName] = useState("");
     const [email,setEmail] = useState("");
     const [password,setPassword] = useState("");
+    const [answer,setAnswer] = useState("");
     const navigate = useNavigate();
 
     // handle form submission
     const handleSubmit = async(e) =>{
         e.preventDefault();
         try {
-            const res = await axios.post(`${process.env.REACT_APP_API}/api/v1/auth/register`,{username,email,password})
+            const res = await axios.post(`${process.env.REACT_APP_API}/api/v1/auth/register`,{username,email,password,answer})
             if(res && res.data.success){
                 toast.success(res.data && res.data.message);
                 navigate('/login');
@@ -43,6 +44,10 @@ const Register = () => {
                 <div className="mb-3">
                 <label htmlFor="InputPassword" className="form-label">Password</label>
                 <input value={password} onChange={(e) =>setPassword(e.target.value)} type="password" className="form-control" id="InputPassword" required />
+                </div>
+                <div className="mb-3">
+                <label htmlFor="InputName" className="form-label">What is your birth year</label>
+                <input value={answer} onChange={(e) =>setAnswer(e.target.value)} type="text" className="form-control" id="InputName" aria-describedby="nameHelp" required />
                 </div>
                 <div className="mb-3 form-check">
                 <input type="checkbox" className="form-check-input" id="checkBox" />
