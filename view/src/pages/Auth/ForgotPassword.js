@@ -38,11 +38,11 @@ const ForgotPassword = () => {
                 <input value={email} onChange={(e) =>setEmail(e.target.value)} type="email" className="form-control" id="InputEmail" aria-describedby="emailHelp" required />
                 </div>
                 <div className="mb-3">
-                <label htmlFor="InputPassword" className="form-label">Password</label>
+                <label htmlFor="InputPassword" className="form-label">New Password</label>
                 <input value={newPassword} onChange={(e) =>setNewPassword(e.target.value)} type="password" className="form-control" id="InputPassword" required />
                 </div>
                 <div className="mb-3">
-                <label className="form-label">What is your birth year</label>
+                <label className="form-label d-flex flex-column">What is your birth year</label>
                 <input value={answer} onChange={(e) =>setAnswer(e.target.value)} type="text" required />
                 </div>
                 <div className="mb-3 form-check">

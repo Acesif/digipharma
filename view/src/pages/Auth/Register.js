@@ -46,8 +46,8 @@ const Register = () => {
                 <input value={password} onChange={(e) =>setPassword(e.target.value)} type="password" className="form-control" id="InputPassword" required />
                 </div>
                 <div className="mb-3">
-                <label htmlFor="InputName" className="form-label">What is your birth year</label>
-                <input value={answer} onChange={(e) =>setAnswer(e.target.value)} type="text" className="form-control" id="InputName" aria-describedby="nameHelp" required />
+                <label htmlFor="InputAnswer" className="form-label">What is your birth year</label>
+                <input value={answer} onChange={(e) =>setAnswer(e.target.value)} type="text" className="form-control" id="InputAnswer" aria-describedby="nameHelp" required />
                 </div>
                 <div className="mb-3 form-check">
                 <input type="checkbox" className="form-check-input" id="checkBox" />
