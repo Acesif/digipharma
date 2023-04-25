@@ -2,9 +2,9 @@ import userModel from '../model/userModel.js';
 import { comparePassword, hashPassword } from '../Helpers/helper.js';
 import JWT from 'jsonwebtoken';
 
-export const registerController = async(req,res) =>{
+export const registerController = async (req,res) => {
     try {
-        const {username,email,password} = req.body;
+        const {username,email,password,answer} = req.body;
         //validation
         if(!username){
             return res.send({message:'Name is required'})
@@ -14,6 +14,9 @@ export const registerController = async(req,res) =>{
         }
         if(!password){
             return res.send({message:'Password is required'})
+        }
+        if(!answer){
+            return res.send({message:'Birth year is required'})
         }
         // check item
         const existingUser = await userModel.findOne({email})
@@ -27,7 +30,7 @@ export const registerController = async(req,res) =>{
         // register user
         const hashedPassword = await hashPassword(password);
         // save user
-        const user = await new userModel({username,email,password: hashedPassword}).save()
+        const user = await new userModel({username,email,password: hashedPassword,answer}).save()
 
         res.status(201).send({
             success: true,
@@ -44,7 +47,7 @@ export const registerController = async(req,res) =>{
     }
 }
 // POST LOGIN
-export const loginController = async (req,res) =>{
+export const loginController = async (req,res) => {
     try {
         const {email,password} = req.body;
         // validation
@@ -70,21 +73,67 @@ export const loginController = async (req,res) =>{
                 message: "Invalid password"
             })
         }
-        const token = await JWT.sign({_id:user._id},process.env.JWT_SECRET,{expiresIn:'7d'});
+        const token = await JWT.sign({_id:user._id},process.env.JWT_SECRET,{expiresIn:'7d'})
         res.status(200).send({
             success: true,
             message: "Login successful",
             user:{
                 name: user.username,
-                email: user.email
+                email: user.email,
+                role: user.role
             },
             token
+        })
+    } 
+    catch (error) {
+        res.status(500).send({
+            success: false,
+            message: "Error in Login",
+            error
+        })
+    }
+}
+
+// forgotPasswordController
+export const forgotPasswordController = async (req,res) => {
+    try {
+        const {email,answer,newPassword} = req.body;
+        if(!email){
+            res.status(400).send({
+                message: "Email is required"
+            })
+        }
+        if(!answer){
+            res.status(400).send({
+                message: "Answer is required"
+            })
+        }
+        if(!newPassword){
+            res.status(400).send({
+                message: "New Password is required"
+            })
+        }
+        // check
+        const user = await userModel.findOne({email,answer})
+        // validation
+        if(!user){
+            return res.status(404).send({
+                success: false,
+                message: "Wrong email or answer",
+
+            })
+        }
+        const hashed = await hashPassword(newPassword);
+        await userModel.findByIdAndUpdate(user._id,{password: hashed})
+        res.status(200).send({
+            success: true,
+            message: "Password reset successfully"
         })
     } catch (error) {
         console.log(error);
         res.status(500).send({
             success: false,
-            message: "Error in Login",
+            message: "Something went wrong",
             error
         })
     }
