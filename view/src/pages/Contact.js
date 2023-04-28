@@ -17,12 +17,9 @@ const Contact = () => {
         <div className="col-md-4">
           <h2 className='pb-5'>Contact Us</h2>
           <p className="text-justify mt-2">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus
-            officiis obcaecati esse tempore unde ratione, eveniet mollitia,
-            perferendis eius temporibus dicta blanditiis doloremque explicabo
-            quasi sunt vero optio cum aperiam vel consectetur! Laborum enim
-            accusantium atque, excepturi sapiente amet! Tenetur ducimus aut
-            commodi illum quidem neque tempora nam.
+            Contact us at: info@digipharma.med 
+            <br/>
+            Hotline: 019999999999
           </p>
         </div>
       </div>
