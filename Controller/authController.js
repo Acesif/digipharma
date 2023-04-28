@@ -78,7 +78,7 @@ export const loginController = async (req,res) => {
             success: true,
             message: "Login successful",
             user:{
-                name: user.username,
+                username: user.username,
                 email: user.email,
                 role: user.role
             },
@@ -148,15 +148,20 @@ export const testController = (req,res) =>{
 // update profile
 export const updateProfileController = async(req,res) => {
     try {
-        const {name, email, password} = req.body
+        const {username, email, password} = req.body
         const user = await userModel.findById(req.user._id)
         // password
-        if(!password && password.length < 6){
+        if(password && password.length < 6){
             return res.json({error: "password is required and must be minimum 6 characters"})
         }
         const hashedPassword = password? await hashPassword(password) : undefined
-        const updatedUser = await userModel.findByIdAndUpdate(req.user._id,{name: name || user.name, password: hashedPassword || user.password,
-        email: email || user.password},{new:true})
+
+        const updatedUser = await userModel.findByIdAndUpdate(req.user._id,{
+            username: username || user.username, 
+            password: hashedPassword || user.password,
+            email: email || user.password},
+            
+            {new:true})
 
         res.status(200).send({
             success: true,

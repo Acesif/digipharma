@@ -1,21 +1,21 @@
 import React, { useState, useEffect } from "react";
-import UserMenu from "../../components/Layout/UserMenu";
-import Layout from "./../../components/Layout/Layout";
-import { useAuth } from "../../context/auth";
+import UserMenu from "../../components/Layout/UserMenu.js";
+import Layout from "./../../components/Layout/Layout.js";
+import { useAuth } from "../../context/auth.js";
 import toast from "react-hot-toast";
 import axios from "axios";
 const Profile = () => {
   //context
   const [auth, setAuth] = useAuth();
   //state
-  const [name, setName] = useState("");
+  const [username, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   //get user data
   useEffect(() => {
-    const { email, name } = auth?.user;
-    setName(name);
+    const { email, username } = auth?.user;
+    setName(username);
     setEmail(email);
   }, [auth?.user]);
 
@@ -24,7 +24,7 @@ const Profile = () => {
     e.preventDefault();
     try {
       const { data } = await axios.put("http://localhost:8000/api/v1/auth/profile", {
-        name,
+        username,
         email,
         password,
       });
@@ -44,7 +44,7 @@ const Profile = () => {
     }
   };
   return (
-    <Layout title={"Your Profile"}>
+    <Layout title={"Edit Profile"}>
       <div className="container-fluid m-3 p-3 dashboard">
         <div className="row">
           <div className="col-md-3">
@@ -53,11 +53,11 @@ const Profile = () => {
           <div className="col-md-8">
             <div className="form-container" style={{ marginTop: "-40px" }}>
               <form onSubmit={handleSubmit}>
-                <h4 className="title">USER PROFILE</h4>
+                <h4 className="title">UPDATE PROFILE</h4>
                 <div className="mb-3">
                   <input
                     type="text"
-                    value={name}
+                    value={username}
                     onChange={(e) => setName(e.target.value)}
                     className="form-control"
                     id="exampleInputEmail1"
