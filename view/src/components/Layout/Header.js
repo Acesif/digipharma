@@ -4,9 +4,11 @@ import {FaPills} from 'react-icons/fa';
 import { useAuth } from '../../context/auth';
 import { toast } from 'react-hot-toast';
 import SearchInput from '../Form/SearchInput.js';
+import { useCart } from '../../context/cart';
 
 function Header() {
   const [auth,setAuth] = useAuth();
+  const [cart] = useCart();
   const handleLogout = () => {
     setAuth({
       ...auth,
@@ -30,9 +32,6 @@ function Header() {
               <li className="nav-item">
                 <Link to='/' className="nav-link">Home</Link>
               </li>
-              {/* <li className="nav-item">
-                <NavLink to='/category' className="nav-link">Category</NavLink>
-              </li> */}
               {
                 !auth.user ? (<>
                   <li className="nav-item">
@@ -56,7 +55,7 @@ function Header() {
                 </>)
               }
               <li className="nav-item">
-                <NavLink to='/cart' className="nav-link" href="#">Cart(0)</NavLink>
+                <NavLink to='/cart' className="nav-link" href="#">Cart({cart?.length})</NavLink>
               </li>
             </ul>
             </div>

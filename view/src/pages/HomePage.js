@@ -8,6 +8,7 @@ import toast from "react-hot-toast";
 import Layout from "./../components/Layout/Layout";
 import { AiOutlineReload } from "react-icons/ai";
 import "../styles/Homepage.css";
+import { useCart } from "../context/cart.js";
 
 const HomePage = () => {
   const navigate = useNavigate();
@@ -19,6 +20,7 @@ const HomePage = () => {
   const [total, setTotal] = useState(0);
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(false);
+  const [cart, setCart] = useCart();
 
   useEffect(()=>{
     setPage(page + 1);
@@ -153,7 +155,7 @@ const HomePage = () => {
           </div>
         </div>
         <div className="col-md-9 ">
-          <h1 className="text-center">All Products</h1>
+          <h1 className="text-center">All Medicines</h1>
           <div className="d-flex flex-wrap">
             {products?.map((p) => (
               <div className="card m-2" key={p._id}>
@@ -166,9 +168,9 @@ const HomePage = () => {
                   <div className="card-name-price">
                     <h5 className="card-title">{p.name}</h5>
                     <h5 className="card-title card-price">
-                      {p.price.toLocaleString("en-US", {
+                      {p.price.toLocaleString("bn-BD", {
                         style: "currency",
-                        currency: "USD",
+                        currency: "BDT",
                       })}
                     </h5>
                   </div>
@@ -184,15 +186,15 @@ const HomePage = () => {
                     </button>
                     <button
                       className="btn btn-dark ms-1"
-                      // onClick={() => {
-                      //   setCart([...cart, p]);
-                      //   localStorage.setItem(
-                      //     "cart",
-                      //     JSON.stringify([...cart, p])
-                      //   );
-                      //   toast.success("Item Added to cart");
-                      //   }
-                      // }
+                      onClick={() => {
+                        setCart([...cart, p]);
+                        localStorage.setItem(
+                          "cart",
+                          JSON.stringify([...cart, p])
+                        );
+                        toast.success("Item Added to cart");
+                        }
+                      }
                     >
                       ADD TO CART
                     </button>
