@@ -1,17 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import Layout from "./../components/Layout/Layout";
 import { useCart } from "../context/cart";
 import { useAuth } from "../context/auth";
 import { useNavigate } from "react-router-dom";
-// import DropIn from "braintree-web-drop-in-react";
-// import { AiFillWarning } from "react-icons/ai";
-// import axios from "axios";
 import "../styles/CartStyles.css";
 
 const CartPage = () => {
-  const [auth, setAuth] = useAuth();
+  const [auth] = useAuth();
   const [cart, setCart] = useCart();
-  // const [clientToken, setClientToken] = useState("");
   const navigate = useNavigate();
 
   //total price
@@ -41,19 +37,6 @@ const CartPage = () => {
       console.log(error);
     }
   };
-
-  //get payment gateway token
-  // const getToken = async () => {
-  //   try {
-  //     const { data } = await axios.get("http://localhost:8000/api/v1/product/braintree/token");
-  //     setClientToken(data?.clientToken);
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
-  // useEffect(() => {
-  //   getToken();
-  // }, [auth?.token]);
 
   return (
     <Layout>
@@ -115,7 +98,7 @@ const CartPage = () => {
                     <h5>{auth?.user?.address}</h5>
                     <button
                       className="btn btn-outline-warning"
-                      onClick={() => navigate("/dashboard/user/profile")}
+                      onClick={() => navigate("/cart")}
                     >
                       Proceed To Payment
                     </button>
@@ -126,7 +109,7 @@ const CartPage = () => {
                   {auth?.token ? (
                     <button
                       className="btn btn-outline-warning"
-                      onClick={() => navigate("/dashboard/user/profile")}
+                      onClick={() => navigate("/cart")}
                     >
                       Proceed To Payment
                     </button>
