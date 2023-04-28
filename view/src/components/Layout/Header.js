@@ -3,6 +3,7 @@ import { Link, NavLink } from 'react-router-dom';
 import {FaPills} from 'react-icons/fa';
 import { useAuth } from '../../context/auth';
 import { toast } from 'react-hot-toast';
+import SearchInput from '../Form/SearchInput.js';
 
 function Header() {
   const [auth,setAuth] = useAuth();
@@ -25,12 +26,13 @@ function Header() {
           <div className="collapse navbar-collapse" id="navbarTogglerDemo01">
             <Link to='/' className="navbar-brand"><FaPills/> DigiPharma</Link>
             <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
+              <SearchInput/>
               <li className="nav-item">
-                <NavLink to='/' className="nav-link">Home</NavLink>
+                <Link to='/' className="nav-link">Home</Link>
               </li>
-              <li className="nav-item">
+              {/* <li className="nav-item">
                 <NavLink to='/category' className="nav-link">Category</NavLink>
-              </li>
+              </li> */}
               {
                 !auth.user ? (<>
                   <li className="nav-item">
