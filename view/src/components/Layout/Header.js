@@ -1,10 +1,10 @@
 import React from 'react'
 import { Link, NavLink } from 'react-router-dom';
-import {FaPills} from 'react-icons/fa';
-import { useAuth } from '../../context/auth';
+import {FaPills} from 'react-icons/fa/index.esm.js';
+import { useAuth } from '../../context/auth.js';
 import { toast } from 'react-hot-toast';
 import SearchInput from '../Form/SearchInput.js';
-import { useCart } from '../../context/cart';
+import { useCart } from '../../context/cart.js';
 
 function Header() {
   const [auth,setAuth] = useAuth();

@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Checkbox, Radio } from "antd";
-import { Prices } from "../components/Prices";
+import { Prices } from "../components/Prices.js";
 import axios from "axios";
 import toast from "react-hot-toast";
-import Layout from "./../components/Layout/Layout";
-import { AiOutlineReload } from "react-icons/ai";
+import Layout from "./../components/Layout/Layout.js";
+import { AiOutlineReload } from "react-icons/ai/index.esm.js";
 import "../styles/Homepage.css";
 import { useCart } from "../context/cart.js";
 
@@ -215,7 +215,8 @@ const HomePage = () => {
                 ) : (
                   <>
                     {" "}
-                    Load <AiOutlineReload />
+                    Load 
+                    <AiOutlineReload />
                   </>
                 )}
               </button>

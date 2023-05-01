@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import Layout from '../../components/Layout/Layout'
-import AdminMenu from '../../components/Layout/AdminMenu'
+import Layout from '../../components/Layout/Layout.js'
+import AdminMenu from '../../components/Layout/AdminMenu.js'
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import axios from "axios";

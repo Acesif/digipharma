@@ -1,7 +1,7 @@
 import React from "react";
-import Layout from "./../components/Layout/Layout";
-import { useCart } from "../context/cart";
-import { useAuth } from "../context/auth";
+import Layout from "./../components/Layout/Layout.js";
+import { useCart } from "../context/cart.js";
+import { useAuth } from "../context/auth.js";
 import { useNavigate } from "react-router-dom";
 import "../styles/CartStyles.css";
 

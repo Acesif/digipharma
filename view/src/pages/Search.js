@@ -1,7 +1,7 @@
 import React from "react";
-import Layout from "./../components/Layout/Layout";
-import { useSearch } from "../context/search";
-import { useCart } from "../context/cart";
+import Layout from "./../components/Layout/Layout.js";
+import { useSearch } from "../context/search.js";
+import { useCart } from "../context/cart.js";
 import { toast } from "react-hot-toast";
 const Search = () => {
   const [values] = useSearch();
